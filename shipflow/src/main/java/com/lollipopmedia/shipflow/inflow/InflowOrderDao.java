@@ -19,7 +19,7 @@ import com.lollipopmedia.shipflow.Order;
 import com.lollipopmedia.shipflow.ShipflowIntegrator;
 
 /**
- * writes to the inflow DB.
+ * Writes to the inflow DB.
  * 
  * @author kduggan
  *
@@ -59,10 +59,12 @@ public class InflowOrderDao {
 		updateSOTable(orderNum,date);
 		Integer invLogId = jdbcTemplate.queryForInt(maxInvBatchLogIdQuery)+1;
 		updateInventoryLogBatch(date);
-		int lineNumber = 1;
+		int lineNumber = 0;
 		for(Order order: orders){
 			String prodIdQuery = "Select ProdId from base_product where name='"+order.getSku()+"'";
 			int prodId = jdbcTemplate.queryForInt(prodIdQuery);
+			String existingQuantityQuery = "Select quantity from base_inventory where ProdId="+prodId;
+			int qty = jdbcTemplate.queryForInt(existingQuantityQuery);
 			String invQuery="Update base_inventory SET quantity=quantity-"+ order.getQuantity()+
 					"where ProdId="+prodId;
 			//add new sales order
@@ -81,28 +83,17 @@ public class InflowOrderDao {
 			           "FromQuantityAfter,ToQuantityBefore,ToQuantityAfter,ProdId)"+
 			     "VALUES" +
 			           "("+invLogId+",NULL,'',100,''," +order.getQuantity()+",100,'"+date+","+
-			           ""
-			           		"<FromSublocation, nvarchar(100),>
-			           ,<ToLocationId, int,>
-			           ,<ToSublocation, nvarchar(100),>
-			           ,<Quantity, decimal(18,4),>
-			           ,<CreatedUserId, int,>
-			           ,<CreatedDttm, datetime,>
-			           ,<FromQuantityBefore, decimal(18,4),>
-			           ,<FromQuantityAfter, decimal(18,4),>
-			           ,<ToQuantityBefore, decimal(18,4),>
-			           ,<ToQuantityAfter, decimal(18,4),>
-			           ,<ProdId, int,>)
+			           "NULL,NULL,"+qty+","+(qty-order.getQuantity())+","+prodId+")";
            		
 			jdbcTemplate.execute(invQuery);
 			jdbcTemplate.execute(soLineQuery);
+			jdbcTemplate.execute(invLogDetailQuery);
 			
 			//update ids
-			soLineId++;
 			lineNumber++;
 		}
 		
-		logger.info("Inflow updated successfully");
+		logger.info("Inflow updated successfully. "+lineNumber+" sales order lines added!");
 	}
 	
 	private void updateSOTable(int orderNum,String date){
