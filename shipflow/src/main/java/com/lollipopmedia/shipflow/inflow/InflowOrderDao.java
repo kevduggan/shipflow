@@ -158,7 +158,7 @@ public class InflowOrderDao {
 		           			"BatchDate, TransactionDate,BatchType,RecordId "+
 		           			",Remarks,CreatedUserId,CreatedDttm) "+
 		           			"VALUES "+
-		           			"('"+date+"','"+date+"',1,NULL,'',100,'"+date+")";
+		           			"('"+date+"','"+date+"',1,NULL,'',100,'"+date+"')";
 		jdbcTemplate.update(logQuery);
 
 	}
