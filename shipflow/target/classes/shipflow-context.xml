@@ -8,18 +8,7 @@
 						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<context:component-scan base-package="com.lollipopmedia.shipflow" />
-	
-	<util:properties id="props" location="classpath:shipflow.properties" />
-  <bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-<!-- 				<value>classpath:shipflow.properties</value> -->
-					<value>file:///C:/Program Files/Shipflow/shipflow.properties</value>
-			</list>
-		</property>
-	</bean>
-  
+
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="shipworksDatasource" />
 	</bean>
@@ -32,16 +21,16 @@
 	<bean id="shipworksDatasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
-			<value>${db.driverClassName}</value>
+			<value>net.sourceforge.jtds.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>${db.url}</value>
+			<value>jdbc:jtds:sqlserver://127.0.0.1:1433/ShipWorks_kev;instance=SHIPWORKS</value>
 		</property>
 		<property name="username">
-			<value>${db.username}</value>
+			<value>kduggan</value>
 		</property>
 		<property name="password">
-			<value>${db.password}</value>
+			<value>hello1</value>
 		</property>
 	</bean>
 
@@ -61,16 +50,16 @@
 	<bean id="inflowDatasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
-			<value>${db.inflow.driverClassName}</value>
+			<value>net.sourceforge.jtds.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>${db.inflow.url}</value>
+			<value>jdbc:jtds:sqlserver://127.0.0.1:1433/inFlow;instance=INFLOWSQL</value>
 		</property>
 		<property name="username">
-			<value>${db.inflow.username}</value>
+			<value>kduggan</value>
 		</property>
 		<property name="password">
-			<value>${db.inflow.password}</value>
+			<value>hello1</value>
 		</property>
 	</bean>
 	

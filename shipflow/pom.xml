@@ -16,14 +16,55 @@
 			<email>kevin.duggan@gmail.com</email>
 		</developer>
 	</developers>
+
+	<scm>
+		<url>scm:git:git@github.com:kevduggan/shipflow.git</url>
+		<connection>scm:git:git@github.com:kevduggan/shipflow.git</connection>
+		<developerConnection>scm:git:git@github.com:kevduggan/shipflow.git</developerConnection>
+	</scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.2.0</spring.version>
 		<junit.version>4.11</junit.version>
 	</properties>
+	<profiles>
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<db.driverClassName>net.sourceforge.jtds.jdbc.Driver</db.driverClassName>
+				<db.shipworks.url>jdbc:jtds:sqlserver://127.0.0.1:1433/ShipWorks_kev;instance=SHIPWORKS</db.shipworks.url>
+				<db.shipworks.username>kduggan</db.shipworks.username>
+				<db.shipworks.password>hello1</db.shipworks.password>
+				<db.inflow.url>jdbc:jtds:sqlserver://127.0.0.1:1433/inFlow;instance=INFLOWSQL</db.inflow.url>
+				<db.inflow.username>kduggan</db.inflow.username>
+				<db.inflow.password>hello1</db.inflow.password>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>appassembler-maven-plugin</artifactId>
@@ -37,6 +78,7 @@
 					</programs>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 
@@ -90,4 +132,5 @@
 		</dependency>
 
 	</dependencies>
+
 </project>
