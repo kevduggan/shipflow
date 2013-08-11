@@ -1,5 +1,7 @@
 package com.lollipopmedia.shipflow;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,12 +29,13 @@ public class ShipflowIntegrator
 	public void transferOrders(){
 		try{
 			logger.info("Starting Shipflow");
-			inflowOrdersDao.updateInflow(ordersDao.findAllSKUAndQtyPairs());
+			List<Order> orders = ordersDao.findAllSKUAndQtyPairs();
+			logger.info(orders.size()+" orders about to be imported." );
+			inflowOrdersDao.updateInflow(orders);
 			logger.info("Shipflow transfer complete");
 		}
 		catch(Exception e){
-			//shit did not work!
-			e.printStackTrace();
+			logger.error("SHIPFLOW ran but there was an error! Ring Kevin!", e);
 		}
 	}	
 	

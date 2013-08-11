@@ -1,6 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
@@ -24,7 +24,7 @@
 			<value>net.sourceforge.jtds.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:jtds:sqlserver://127.0.0.1:1433/ShipWorks_kev;instance=SHIPWORKS</value>
+			<value>jdbc:jtds:sqlserver://10.0.1.17:1433/ShipWorks_kev;instance=SHIPWORKS</value>
 		</property>
 		<property name="username">
 			<value>kduggan</value>
@@ -35,10 +35,10 @@
 	</bean>
 
 
-		
-<!-- INFLOW -->
 
-<bean id="inflowJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<!-- INFLOW -->
+
+	<bean id="inflowJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="inflowDatasource" />
 	</bean>
 
@@ -53,7 +53,7 @@
 			<value>net.sourceforge.jtds.jdbc.Driver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:jtds:sqlserver://127.0.0.1:1433/inFlow;instance=INFLOWSQL</value>
+			<value>jdbc:jtds:sqlserver://10.0.1.17:1433/inFlow;instance=INFLOWSQL</value>
 		</property>
 		<property name="username">
 			<value>kduggan</value>
@@ -62,7 +62,7 @@
 			<value>hello1</value>
 		</property>
 	</bean>
-	
 
-		
+
+
 </beans>

@@ -36,10 +36,10 @@
 			</activation>
 			<properties>
 				<db.driverClassName>net.sourceforge.jtds.jdbc.Driver</db.driverClassName>
-				<db.shipworks.url>jdbc:jtds:sqlserver://127.0.0.1:1433/ShipWorks_kev;instance=SHIPWORKS</db.shipworks.url>
+				<db.shipworks.url>jdbc:jtds:sqlserver://10.0.1.17:1433/ShipWorks_kev;instance=SHIPWORKS</db.shipworks.url>
 				<db.shipworks.username>kduggan</db.shipworks.username>
 				<db.shipworks.password>hello1</db.shipworks.password>
-				<db.inflow.url>jdbc:jtds:sqlserver://127.0.0.1:1433/inFlow;instance=INFLOWSQL</db.inflow.url>
+				<db.inflow.url>jdbc:jtds:sqlserver://10.0.1.17:1433/inFlow;instance=INFLOWSQL</db.inflow.url>
 				<db.inflow.username>kduggan</db.inflow.username>
 				<db.inflow.password>hello1</db.inflow.password>
 			</properties>
@@ -66,14 +66,26 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.lollipopmedia.shipflow.ShipflowIntegrator</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>appassembler-maven-plugin</artifactId>
-				<version>1.3.1</version>
 				<configuration>
 					<programs>
 						<program>
 							<mainClass>com.lollipopmedia.shipflow.ShipflowIntegrator</mainClass>
-							<name>shipflow</name>
+							<name>ShipFlow</name>
 						</program>
 					</programs>
 				</configuration>
@@ -97,7 +109,7 @@
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
-			<version>1.3.0</version>
+			<version>1.2.7</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>

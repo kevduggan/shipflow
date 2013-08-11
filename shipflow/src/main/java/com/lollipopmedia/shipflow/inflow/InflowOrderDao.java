@@ -51,49 +51,100 @@ public class InflowOrderDao {
 	 * @param orders
 	 */
 	@Transactional (readOnly=false)
-	public void updateInflow(List<Order> orders) {
+	public void updateInflow(List<Order> orders){
 		String date = sdf.format(new Date());
 		Map<String, Object> soResults = jdbcTemplate.queryForMap(maxSOIdQuery);
 		Integer soId = ((Integer) soResults.get("SalesOrderId"))+1;
 		int orderNum = (Integer.parseInt(((String)soResults.get("OrderNumber")).substring(ORDER_NUM_PREFIX.length())))+1;
 		updateSOTable(orderNum,date);
-		Integer invLogId = jdbcTemplate.queryForInt(maxInvBatchLogIdQuery)+1;
+		Integer invLogId = getInvBatchLogId();
 		updateInventoryLogBatch(date);
 		int lineNumber = 0;
 		for(Order order: orders){
-			String prodIdQuery = "Select ProdId from base_product where name='"+order.getSku()+"'";
-			int prodId = jdbcTemplate.queryForInt(prodIdQuery);
-			String existingQuantityQuery = "Select quantity from base_inventory where ProdId="+prodId;
-			int qty = jdbcTemplate.queryForInt(existingQuantityQuery);
-			String invQuery="Update base_inventory SET quantity=quantity-"+ order.getQuantity()+
-					"where ProdId="+prodId;
-			//add new sales order
-					
-			String soLineQuery="INSERT INTO SO_SalesOrder_Line( SalesOrderId"+
-								",Version ,LineNum,Description,Quantity,UnitPrice" +
-								",Discount,SubTotal,ItemTaxCodeId,QuantityUom," +
-								"QuantityDisplay,DiscountIsPercent,ProdId)" +
-								"VALUES ("+soId+",1,"+lineNumber+",''"+
-								","+ order.getQuantity()+",0.0,0.0,0.0,100,'pcs'"+
-								","+ order.getQuantity()+",1,"+prodId+")";
-			
-			String invLogDetailQuery = "INSERT INTO BASE_InventoryLogDetail"+
-			           "(InventoryLogBatchId,FromLocationId,FromSublocation,ToLocationId,"+
-			           "ToSublocation,Quantity,CreatedUserId,CreatedDttm,FromQuantityBefore,"+
-			           "FromQuantityAfter,ToQuantityBefore,ToQuantityAfter,ProdId)"+
-			     "VALUES" +
-			           "("+invLogId+",NULL,'',100,''," +order.getQuantity()+",100,'"+date+","+
-			           "NULL,NULL,"+qty+","+(qty-order.getQuantity())+","+prodId+")";
-           		
-			jdbcTemplate.execute(invQuery);
-			jdbcTemplate.execute(soLineQuery);
-			jdbcTemplate.execute(invLogDetailQuery);
-			
+			updateSingleOrder(date, soId, invLogId, lineNumber, order);
 			//update ids
 			lineNumber++;
 		}
 		
 		logger.info("Inflow updated successfully. "+lineNumber+" sales order lines added!");
+	}
+
+	/**
+	 * @param date
+	 * @param soId
+	 * @param invLogId
+	 * @param lineNumber
+	 * @param order
+	 */
+	private void updateSingleOrder(String date, Integer soId, Integer invLogId,
+			int lineNumber, Order order){
+		String prodIdQuery = "Select ProdId from base_product where name='"+order.getSku()+"'";
+		int prodId = jdbcTemplate.queryForInt(prodIdQuery);
+						
+		addSalesOrderLine(soId, lineNumber, order, prodId);
+		
+		updateInventoryQtyTotal(prodId);
+		//no need to do this according to DB comparison
+		//updateInventory(date, invLogId, order, prodId);
+	}
+
+	/**
+	 * @param prodId
+	 */
+	private void updateInventoryQtyTotal(int prodId) {
+		String updateInvQtyTotalQuery = "Update base_inventoryquantitytotal set quantitysold = quantitysold+1 where ProdId="+prodId;
+		jdbcTemplate.execute(updateInvQtyTotalQuery);
+	}
+
+	/**
+	 * @param date
+	 * @param invLogId
+	 * @param order
+	 * @param prodId
+	 */
+	private void updateInventory(String date, Integer invLogId, Order order,
+			int prodId) {
+		String existingQuantityQuery = "Select quantity from base_inventory where ProdId="+prodId;
+		int qty = jdbcTemplate.queryForInt(existingQuantityQuery);
+		String invQuery="Update base_inventory SET quantity=quantity-"+ order.getQuantity()+
+				"where ProdId="+prodId;
+		
+		String invLogDetailQuery = "INSERT INTO BASE_InventoryLogDetail"+
+		           "(InventoryLogBatchId,FromLocationId,FromSublocation,ToLocationId,"+
+		           "ToSublocation,Quantity,CreatedUserId,CreatedDttm,FromQuantityBefore,"+
+		           "FromQuantityAfter,ToQuantityBefore,ToQuantityAfter,ProdId)"+
+		     "VALUES" +
+		           "("+invLogId+",NULL,'',100,''," +order.getQuantity()+",100,'"+date+","+
+		           "NULL,NULL,"+qty+","+(qty-order.getQuantity())+","+prodId+")";
+			
+		jdbcTemplate.execute(invQuery);
+		
+		jdbcTemplate.execute(invLogDetailQuery);
+	}
+
+	/**
+	 * @param soId
+	 * @param lineNumber
+	 * @param order
+	 * @param prodId
+	 */
+	private void addSalesOrderLine(Integer soId, int lineNumber, Order order,
+			int prodId) {
+		String soLineQuery="INSERT INTO SO_SalesOrder_Line( SalesOrderId"+
+							",Version ,LineNum,Description,Quantity,UnitPrice" +
+							",Discount,SubTotal,ItemTaxCodeId,QuantityUom," +
+							"QuantityDisplay,DiscountIsPercent,ProdId)" +
+							"VALUES ("+soId+",1,"+lineNumber+",''"+
+							","+ order.getQuantity()+",0.0,0.0,0.0,100,'pcs'"+
+							","+ order.getQuantity()+",1,"+prodId+")";
+		jdbcTemplate.execute(soLineQuery);
+	}
+
+	/**
+	 * @return
+	 */
+	private int getInvBatchLogId() {
+		return jdbcTemplate.queryForInt(maxInvBatchLogIdQuery)+1;
 	}
 	
 	private void updateSOTable(int orderNum,String date){

@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="2.432" errors="1" skipped="0" tests="1" name="com.lollipopmedia.shipflow.inflow.InflowOrderDaoTest">
+<testsuite failures="0" time="0.73" errors="1" skipped="0" tests="1" name="com.lollipopmedia.shipflow.inflow.InflowOrderDaoTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_11\jre\bin"/>
-    <property name="java.vm.version" value="23.6-b04"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="java.vendor.url" value="http://java.oracle.com/"/>
-    <property name="path.separator" value=";"/>
+    <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
+    <property name="java.vm.version" value="20.51-b01-457"/>
+    <property name="awt.nativeDoubleBuffering" value="true"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="mrj.build" value="11M4509"/>
+    <property name="java.vm.vendor" value="Apple Inc."/>
+    <property name="java.vendor.url" value="http://www.apple.com/"/>
+    <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="user.script" value=""/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value="Service Pack 2"/>
+    <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\devapps\git\com.lollipopmedia.shipflow\shipflow"/>
-    <property name="java.runtime.version" value="1.7.0_11-b21"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_11\jre\lib\endorsed"/>
-    <property name="os.arch" value="x86"/>
-    <property name="java.io.tmpdir" value="C:\Users\fdoyle\AppData\Local\Temp\"/>
+    <property name="user.dir" value="/Users/kevinduggan/Dev/workspaces/shipflow/shipflow"/>
+    <property name="java.runtime.version" value="1.6.0_51-b11-457-11M4509"/>
+    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/6y/_85ksxm916z3_4clj01488w00000gn/T/"/>
     <property name="line.separator" value="
 "/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows Vista"/>
-    <property name="classworlds.conf" value="C:\devapps\shipflowws\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf7970302103601983328.tmp"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_11\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files\Microsoft SQL Server\90\DTS\Binn\;c:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Git\cmd;."/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Users/kevinduggan/Dev/workspaces/WWIS/.metadata/.plugins/org.eclipse.m2e.core/launches/m2conf4332982824556826280.tmp"/>
+    <property name="sun.jnu.encoding" value="MacRoman"/>
+    <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="51.0"/>
-    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
-    <property name="os.version" value="6.0"/>
-    <property name="user.home" value="C:\Users\fdoyle"/>
-    <property name="user.timezone" value="Europe/London"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
-    <property name="java.specification.version" value="1.7"/>
-    <property name="file.encoding" value="Cp1252"/>
-    <property name="user.name" value="fdoyle"/>
-    <property name="java.class.path" value="/C:/devapps/eclipse/sts-3.1.0.RELEASE/configuration/org.eclipse.osgi/bundles/572/1/.cp/jars/plexus-classworlds-2.4.jar"/>
-    <property name="java.vm.specification.version" value="1.7"/>
-    <property name="sun.arch.data.model" value="32"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_11\jre"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.8.4"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/kevinduggan"/>
+    <property name="user.timezone" value="Europe/Dublin"/>
+    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="MacRoman"/>
+    <property name="user.name" value="kevinduggan"/>
+    <property name="java.class.path" value="/Users/kevinduggan/Dev/ssts/sts-3.2.0.RELEASE/configuration/org.eclipse.osgi/bundles/553/1/.cp/jars/plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
-    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.version" value="1.7.0_11"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_11\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_11\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_11\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_11\jre\classes"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\devapps\git\com.lollipopmedia.shipflow\shipflow\EMBEDDED"/>
-    <property name="file.separator" value="\"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="awt.toolkit" value="apple.awt.CToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_51"/>
+    <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
+    <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
+    <property name="java.vendor" value="Apple Inc."/>
+    <property name="maven.home" value="/Users/kevinduggan/Dev/workspaces/shipflow/shipflow/EMBEDDED"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.desktop" value="windows"/>
-    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
+    <property name="mrj.version" value="1070.1.6.0_51-457"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.02" classname="com.lollipopmedia.shipflow.inflow.InflowOrderDaoTest" name="testUpdateInflow">
+  <testcase time="0.013" classname="com.lollipopmedia.shipflow.inflow.InflowOrderDaoTest" name="testUpdateInflow">
     <error message="Error creating bean with name &apos;inflowOrderDao&apos;: Autowiring of fields failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jdbc.core.JdbcTemplate com.lollipopmedia.shipflow.inflow.InflowOrderDao.jdbcTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowJdbcTemplate&apos; defined in class path resource [shipflow-context.xml]: Cannot resolve reference to bean &apos;inflowDatasource&apos; while setting bean property &apos;dataSource&apos;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowDatasource&apos; defined in class path resource [shipflow-context.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
-PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [${db.driverClassName}]" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowOrderDao&apos;: Autowiring of fields failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jdbc.core.JdbcTemplate com.lollipopmedia.shipflow.inflow.InflowOrderDao.jdbcTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowJdbcTemplate&apos; defined in class path resource [shipflow-context.xml]: Cannot resolve reference to bean &apos;inflowDatasource&apos; while setting bean property &apos;dataSource&apos;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowDatasource&apos; defined in class path resource [shipflow-context.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
-PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [${db.driverClassName}]
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.UnsupportedClassVersionError: net/sourceforge/jtds/jdbc/Driver : Unsupported major.minor version 51.0" type="org.springframework.beans.factory.BeanCreationException">org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowOrderDao&apos;: Autowiring of fields failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jdbc.core.JdbcTemplate com.lollipopmedia.shipflow.inflow.InflowOrderDao.jdbcTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowJdbcTemplate&apos; defined in class path resource [shipflow-context.xml]: Cannot resolve reference to bean &apos;inflowDatasource&apos; while setting bean property &apos;dataSource&apos;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowDatasource&apos; defined in class path resource [shipflow-context.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.UnsupportedClassVersionError: net/sourceforge/jtds/jdbc/Driver : Unsupported major.minor version 51.0
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessAfterInstantiation(AutowiredAnnotationBeanPostProcessor.java:243)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:959)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:472)
@@ -96,22 +100,22 @@ PropertyAccessException 1: org.springframework.beans.MethodInvocationException: 
 	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
 	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:601)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
 	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
 	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.springframework.jdbc.core.JdbcTemplate com.lollipopmedia.shipflow.inflow.InflowOrderDao.jdbcTemplate; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowJdbcTemplate&apos; defined in class path resource [shipflow-context.xml]: Cannot resolve reference to bean &apos;inflowDatasource&apos; while setting bean property &apos;dataSource&apos;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowDatasource&apos; defined in class path resource [shipflow-context.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
-PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [${db.driverClassName}]
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.UnsupportedClassVersionError: net/sourceforge/jtds/jdbc/Driver : Unsupported major.minor version 51.0
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:435)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.injectFields(InjectionMetadata.java:105)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessAfterInstantiation(AutowiredAnnotationBeanPostProcessor.java:240)
 	... 39 more
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowJdbcTemplate&apos; defined in class path resource [shipflow-context.xml]: Cannot resolve reference to bean &apos;inflowDatasource&apos; while setting bean property &apos;dataSource&apos;; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowDatasource&apos; defined in class path resource [shipflow-context.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
-PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [${db.driverClassName}]
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.UnsupportedClassVersionError: net/sourceforge/jtds/jdbc/Driver : Unsupported major.minor version 51.0
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:275)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:104)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1245)
@@ -130,7 +134,7 @@ PropertyAccessException 1: org.springframework.beans.MethodInvocationException: 
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:412)
 	... 41 more
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name &apos;inflowDatasource&apos; defined in class path resource [shipflow-context.xml]: Error setting property values; nested exception is org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
-PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [${db.driverClassName}]
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.UnsupportedClassVersionError: net/sourceforge/jtds/jdbc/Driver : Unsupported major.minor version 51.0
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1279)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1010)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:472)
@@ -145,7 +149,7 @@ PropertyAccessException 1: org.springframework.beans.MethodInvocationException: 
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:269)
 	... 56 more
 Caused by: org.springframework.beans.PropertyBatchUpdateException; nested PropertyAccessExceptions (1) are:
-PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.IllegalStateException: Could not load JDBC driver class [${db.driverClassName}]
+PropertyAccessException 1: org.springframework.beans.MethodInvocationException: Property &apos;driverClassName&apos; threw exception; nested exception is java.lang.UnsupportedClassVersionError: net/sourceforge/jtds/jdbc/Driver : Unsupported major.minor version 51.0
 	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:104)
 	at org.springframework.beans.AbstractPropertyAccessor.setPropertyValues(AbstractPropertyAccessor.java:59)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1276)
