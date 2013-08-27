@@ -8,9 +8,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,12 +80,18 @@ public class InflowOrderDao {
 	 */
 	private void updateSingleOrder(String date, Integer soId, Integer invLogId,
 			int lineNumber, Order order){
-		String prodIdQuery = "Select ProdId from base_product where name='"+order.getSku()+"'";
-		int prodId = jdbcTemplate.queryForInt(prodIdQuery);
+		String prodIdQuery = "Select ProdId from base_product where name='"+getEscapedSKU(order)+"'";
+		try{
+			logger.info("Processing "+order.getSku()+" ("+order.getQuantity()+"pcs)");
+			int prodId = jdbcTemplate.queryForInt(prodIdQuery);
 						
-		addSalesOrderLine(soId, lineNumber, order, prodId);
+			addSalesOrderLine(soId, lineNumber, order, prodId);
 		
-		updateInventoryQtyTotal(prodId);
+			updateInventoryQtyTotal(prodId);
+		}
+		catch(EmptyResultDataAccessException e){
+			logger.error("Looks like their was no matching product for the SKU '"+getEscapedSKU(order)+"'",e);
+		}
 		//no need to do this according to DB comparison
 		//updateInventory(date, invLogId, order, prodId);
 	}
@@ -212,5 +220,9 @@ public class InflowOrderDao {
 		           			"('"+date+"','"+date+"',1,NULL,'',100,'"+date+"')";
 		jdbcTemplate.update(logQuery);
 
+	}
+	
+	private String getEscapedSKU(Order order){
+		return StringEscapeUtils.escapeSql(order.getSku());
 	}
 }

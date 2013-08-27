@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.lollipopmedia.shipflow.inflow.InflowOrderDao;
 import com.lollipopmedia.shipflow.shipworks.ShipworksOrderDao;
@@ -15,7 +16,7 @@ import com.lollipopmedia.shipflow.shipworks.ShipworksOrderDao;
  * 
  * @author kduggan
  */
-@Component
+@Service
 public class ShipflowIntegrator 
 {
     
@@ -38,9 +39,5 @@ public class ShipflowIntegrator
 			logger.error("SHIPFLOW ran but there was an error! Ring Kevin!", e);
 		}
 	}	
-	
-	public static void main(String[]args){
-		ShipflowIntegrator integrator = new ShipflowIntegrator();
-		integrator.transferOrders();
-	}
+
 }

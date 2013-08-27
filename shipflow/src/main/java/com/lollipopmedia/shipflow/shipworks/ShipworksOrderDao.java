@@ -31,7 +31,7 @@ public class ShipworksOrderDao {
 	 */
 	@Transactional(readOnly = true)
 	public List<Order> findAllSKUAndQtyPairs() {
-		String query = "SELECT OrderItem.name as SKU, OrderItem.quantity " +
+		String query = "SELECT OrderItem.SKU, OrderItem.quantity " +
 				"FROM OrderItem " +
 				"LEFT OUTER JOIN  \"Order\" ON \"Order\".OrderID=OrderItem.OrderId " +
 				"WHERE \"Order\".localstatus='Must Send Item'";
