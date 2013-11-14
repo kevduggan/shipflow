@@ -27,7 +27,7 @@ public class InflowOrderDaoTest {
 		order.setSku("BLUETOOTH HEADSET: BN708 BLACK");
 		List<Order> ordersList= new ArrayList<Order>();
 		ordersList.add(order);
-		inflowOrdersDao.updateInflow(ordersList);
+		//inflowOrdersDao.updateInflow(ordersList);
 		assert(true);
 	}
 

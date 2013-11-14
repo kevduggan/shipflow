@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("shipflowRunner")
-public class ShipFlowRunner {
+public class ShipflowRunner {
 
 	public static void main(String[] args) {
 		ApplicationContext context = 
 	            new ClassPathXmlApplicationContext("/shipflow-context.xml");
-		ShipFlowRunner runner = (ShipFlowRunner)context.getBean("shipflowRunner");
+		ShipflowRunner runner = (ShipflowRunner)context.getBean("shipflowRunner");
         runner.start(args);
     }
 
