@@ -37,7 +37,7 @@ public class InflowOrderDao {
 									"( SELECT MAX(SalesOrderId) FROM SO_SalesOrder)";
 	private String maxInvBatchLogIdQuery = "SELECT MAX(InventoryLogBatchId) FROM BASE_InventoryLogBatch";
 	private String maxInvBatchLogCostIdQuery = "SELECT MAX(InventoryCostLogBatchId) FROM BASE_InventoryCostLogBatch";
-	private String maxShipLineIdQuery = "SELECT MAX(SO_SalesOrderShip_Line) from SO_SalesOrderShip_Line";
+	private String maxShipLineIdQuery = "SELECT MAX(SalesOrderShipLineId) from SO_SalesOrderShip_Line";
 	private String standardCostQuery = "SELECT standardCost FROM BASE_InventoryCost where prodId=%d";
 
 
@@ -250,25 +250,25 @@ public class InflowOrderDao {
 							","+ order.getQuantity()+",1,"+prodId+")";
 		jdbcTemplate.execute(soLineQuery);
 		
-		String soInvoiceLineQuery="INSERT INTO SO_SalesOrderInvoice_Line (SalesOrderInvoiceLineId, SalesOrderId, Version, LineNum, Description, Quantity, UnitPrice, Discount, SubTotal, ItemTaxCodeId, QuantityUom, QuantityDisplay, DiscountIsPercent, Cost, ProdId, CostCurrencyId)"+ 
+		String soInvoiceLineQuery="INSERT INTO SO_SalesOrderInvoice_Line (SalesOrderId, Version, LineNum, Description, Quantity, UnitPrice, Discount, SubTotal, ItemTaxCodeId, QuantityUom, QuantityDisplay, DiscountIsPercent, Cost, ProdId, CostCurrencyId)"+ 
 								  "VALUES ("+soId+",1,"+lineNumber+", '', "+ order.getQuantity()+", 0.00000, 0.00000, 0.00000, 100, 'pcs.', "+ order.getQuantity()+", 1, NULL, "+prodId+", 1)";
 		jdbcTemplate.execute(soInvoiceLineQuery);
 		
 		Double cost = standardCost*order.getQuantity();
-		String packLineQuery = "INSERT INTO SO_SalesOrderPack_Line (SalesOrderPackLineId, SalesOrderId, Version, LineNum, Description, Quantity, ContainerNumber, IsShipped, QuantityUom, QuantityDisplay, Cost, ProdId, TotalAverageCost, CostCurrencyId)"+ 
+		String packLineQuery = "INSERT INTO SO_SalesOrderPack_Line (SalesOrderId, Version, LineNum, Description, Quantity, ContainerNumber, IsShipped, QuantityUom, QuantityDisplay, Cost, ProdId, TotalAverageCost, CostCurrencyId)"+ 
 							   "VALUES ("+soId+",1,"+lineNumber+", '', "+ order.getQuantity()+", '1', 1, 'pcs.', "+ order.getQuantity()+", "+cost+", "+prodId+", 0.00000000, 1)";
 		jdbcTemplate.execute(packLineQuery);
 		
-		String pickLIneQuery = "INSERT INTO SO_SalesOrderPick_Line (SalesOrderPickLineId, SalesOrderId, Version, LineNum, Description, Quantity, LocationId, Sublocation, IsShipped, QuantityUom, QuantityDisplay, ProdId)"+ 
+		String pickLIneQuery = "INSERT INTO SO_SalesOrderPick_Line (SalesOrderId, Version, LineNum, Description, Quantity, LocationId, Sublocation, IsShipped, QuantityUom, QuantityDisplay, ProdId)"+ 
 							   "VALUES ("+soId+",1,"+lineNumber+", '', "+ order.getQuantity()+", 100, '', 1, 'pcs.', "+ order.getQuantity()+", "+prodId+")";
 		jdbcTemplate.execute(pickLIneQuery);
 
-		String shipLineQuery = "INSERT INTO SO_SalesOrderShip_Line (SalesOrderShipLineId, SalesOrderId, Version, LineNum, ShippedDate, Carrier, TrackingNumber, Description, IsShipped, InventoryBatchLogId)" +
-							   "VALUES ("+soId+",1,"+lineNumber+", '+date+', '', '', '', 1, NULL)";
+		String shipLineQuery = "INSERT INTO SO_SalesOrderShip_Line (SalesOrderId, Version, LineNum, ShippedDate, Carrier, TrackingNumber, Description, IsShipped, InventoryBatchLogId)" +
+							   "VALUES ("+soId+",1,"+lineNumber+", '"+date+"', '', '', '', 1, NULL)";
 		jdbcTemplate.execute(shipLineQuery);
 		
 		int shipLineId = jdbcTemplate.queryForInt(maxShipLineIdQuery);
-		String shipContainerQuery = "INSERT INTO SO_SalesOrderShipContainer (SalesOrderShipContainerId, Version, SalesOrderShipLineId, ContainerNumber) VALUES (1, "+shipLineId+", '1')";
+		String shipContainerQuery = "INSERT INTO SO_SalesOrderShipContainer (Version, SalesOrderShipLineId, ContainerNumber) VALUES (1, "+shipLineId+", '1')";
 		jdbcTemplate.execute(shipContainerQuery);
 
 	}
