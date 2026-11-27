@@ -4,12 +4,15 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -62,19 +65,40 @@ public class InflowOrderDao {
 		Map<String, Object> soResults = jdbcTemplate.queryForMap(maxSOIdQuery);
 		Integer soId = ((Integer) soResults.get("SalesOrderId"))+1;
 		int orderNum = (Integer.parseInt(((String)soResults.get("OrderNumber")).substring(ORDER_NUM_PREFIX.length())))+1;
+		MDC.put("sales_order", ORDER_NUM_PREFIX + orderIdFormatter.format(orderNum));
+		MDC.put("sales_order_id", String.valueOf(soId));
 		updateSOTable(orderNum,date);
 		updateInventoryLogBatch(soId, orderNum, date);
 		Integer invLogId = getInvBatchLogId();
 		Integer invLogCostId = getInvBatchLogCostId();
 		updateInventoryCostLogBatch(invLogId, soId, orderNum, date);
 		int lineNumber = 0;
+		int linesWritten = 0;
+		List<String> skippedSkus = new ArrayList<String>();
 		for(Order order: orders){
-			updateSingleOrder(date, soId, invLogId, invLogCostId, lineNumber, order);
+			MDC.put("line", String.valueOf(lineNumber));
+			MDC.put("sku", String.valueOf(order.getSku()));
+			if(updateSingleOrder(date, soId, invLogId, invLogCostId, lineNumber, order)){
+				linesWritten++;
+			}else{
+				skippedSkus.add(order.getSku());
+			}
 			//update ids
 			lineNumber++;
 		}
+		MDC.remove("line");
+		MDC.remove("sku");
+		MDC.put("lines_written", String.valueOf(linesWritten));
+		MDC.put("lines_skipped", String.valueOf(skippedSkus.size()));
+		if(skippedSkus.size() > 0){
+			MDC.put("skus_skipped", StringUtils.join(skippedSkus, ","));
+		}
 		
-		logger.info("Inflow updated successfully. "+lineNumber+" sales order lines added!");
+		logger.info("Inflow updated successfully");
+		if(skippedSkus.size() > 0){
+			logger.warn("Inflow sales order is missing lines for unmatched SKUs");
+			MDC.remove("skus_skipped");
+		}
 	}
 
 	/**
@@ -115,8 +139,10 @@ public class InflowOrderDao {
 	 * @param invLogId
 	 * @param lineNumber
 	 * @param order
+	 * @return true when the sales order line was written, false when no
+	 *         inflow product matched the sku of the order
 	 */
-	private void updateSingleOrder(String date, Integer soId, Integer invLogId, Integer invLogCostId,
+	private boolean updateSingleOrder(String date, Integer soId, Integer invLogId, Integer invLogCostId,
 			int lineNumber, Order order){
 		String prodIdQuery = "Select ProdId from base_product where name='"+getEscapedSKU(order)+"'";
 		int prodId;
@@ -126,7 +152,7 @@ public class InflowOrderDao {
 		}
 		catch(EmptyResultDataAccessException e){
 			logger.error("Looks like their was no matching product for the SKU '"+getEscapedSKU(order)+"'",e);
-			return;
+			return false;
 		}
 		int existingQty = getExistingQuantity(prodId);
 		int updatedQty = existingQty - order.getQuantity();
@@ -137,6 +163,7 @@ public class InflowOrderDao {
 		updateCostLogDetail(invLogCostId, order.getQuantity(), existingQty, updatedQty, prodId, date, standardCost);
 		addSalesOrderLine(soId, lineNumber, order, prodId, standardCost, date);
 
+		return true;
 	}
 
 
