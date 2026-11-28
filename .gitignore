@@ -1,0 +1,5 @@
+# Build output, including the packaged jar that used to carry database settings
+target/
+
+# Local connection settings for the two databases. Keep them out of git.
+/shipflow.properties
