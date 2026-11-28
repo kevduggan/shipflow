@@ -183,8 +183,8 @@ public class InflowOrderDao {
 	private void updateCostLogDetail(Integer invLogCostId, int quantity,
 			int existingQty, int updatedQty, int prodId, String date, Double standardCost) {
 				
-		String updateCostLogDetailQuery = "INSERT INTO BASE_InventoryCostLogDetail (InventoryCostLogDetailId, InventoryCostLogBatchId, Quantity, QuantityBefore, QuantityAfter, AverageCostBefore, AverageCostAfter, CreatedUserId, CreatedDttm, ProdId, LastPurchaseCostBefore, LastPurchaseCostAfter, StandardCostBefore, StandardCostAfter, CostingMethodBefore, CostingMethodAfter, CurrencyIdBefore, CurrencyIdAfter)"+ 
-										  "VALUES (9986, "+invLogCostId+", -"+quantity+", "+existingQty+", "+updatedQty+", 0.00000000, 0.00000000, 100, '"+date+"', "+prodId+", 0.00000000, 0.00000000, "+standardCost+", "+standardCost+", 1, 1, 1, 1)";
+		String updateCostLogDetailQuery = "INSERT INTO BASE_InventoryCostLogDetail (InventoryCostLogBatchId, Quantity, QuantityBefore, QuantityAfter, AverageCostBefore, AverageCostAfter, CreatedUserId, CreatedDttm, ProdId, LastPurchaseCostBefore, LastPurchaseCostAfter, StandardCostBefore, StandardCostAfter, CostingMethodBefore, CostingMethodAfter, CurrencyIdBefore, CurrencyIdAfter)"+ 
+										  "VALUES ("+invLogCostId+", -"+quantity+", "+existingQty+", "+updatedQty+", 0.00000000, 0.00000000, 100, '"+date+"', "+prodId+", 0.00000000, 0.00000000, "+standardCost+", "+standardCost+", 1, 1, 1, 1)";
 		
 		jdbcTemplate.execute(updateCostLogDetailQuery);
 	}
